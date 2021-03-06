@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class todoRepository extends MongoRepository<todo, String> {
+public interface todoRepository extends MongoRepository<todo, String> {
 
 }
