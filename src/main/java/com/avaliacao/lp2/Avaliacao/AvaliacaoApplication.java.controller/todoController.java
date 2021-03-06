@@ -1,26 +1,29 @@
 package AvaliacaoApplication.java.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.http.ResposeEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import AvaliacaoApplication.java.model.todo;
-import AvaliacaoApplication.java.repositry.todoRepositry;
+import AvaliacaoApplication.java.repositry.todoRepository;
 
-@RestCotroller
+@RestController
 public class todoController{
 
     @Autowired
-    private todoRepositry todoRepo;
+    private todoReponsitory todoRepo;
 
     @GetMapping("/todos")
-    public ResposeEntity<?> getAllTodos(){
+    public ResponseEntity<?> getAllTodos(){
         List<todo> todos = todoRepo.findAll();
         if(todos.size() > 0){
-            return new ResposeEntity<List<todo>>(todos, HttpStatus.OK);
+            return new ResponseEntity<List<todo>>(todos, HttpStatus.OK);
         }else{
-            return new ResposeEntity<>("No todos avaliable", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No todos avaliable", HttpStatus.NOT_FOUND);
         }
     }
 }
